@@ -1,0 +1,7 @@
+{
+    // The path to the include directory.
+    // Type: [string]
+    "tablegen-lsp.includePath": [
+        "/opt/homebrew/opt/llvm@19/include",
+    ]
+}
