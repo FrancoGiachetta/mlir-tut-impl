@@ -1,3 +1,6 @@
+#ifndef LIB_DIALECT_POLY_POLYDIALECT_TD_
+#define LIB_DIALECT_POLY_POLYDIALECT_TD_
+
 include "mlir/IR/DialectBase.td"
 
 def PolyDialect : Dialect {
@@ -11,3 +14,5 @@ def PolyDialect : Dialect {
 
   let cppNamespace = "::mlir::tutorial::poly";
 }
+
+#endif

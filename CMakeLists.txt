@@ -31,3 +31,4 @@ include_directories(${PROJECT_BINARY_DIR})
 # Include CMakeLists.txt from these subdirectories
 add_subdirectory(lib)
 add_subdirectory(tools)
+add_subdirectory(tests)

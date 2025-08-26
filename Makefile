@@ -15,6 +15,11 @@ mlir-docs:
 	cmake -S . -B ${BUILD_DIR}
 	cmake --build ${BUILD_DIR} --target mlir-docs
 
+.PHONY: test
+test:
+	cmake -S . -B ${BUILD_DIR}
+	cmake --build ${BUILD_DIR} --target check-mlir-tutorial 
+
 .PHONY: clean
 clean:
 	rm -rf ${BUILD_DIR}
