@@ -1,2 +1,0 @@
-7.478600e-01 code_motion.mlir
-7.408781e-01 poly_type.mlir
