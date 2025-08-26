@@ -1,23 +1,20 @@
 BUILD_DIR=build-dir
 
-.PHONY: all
-all: 
+.PHONY: build
+build: 
 	cmake -S . -B ${BUILD_DIR}
 	cmake --build ${BUILD_DIR} 
 
 .PHONY: mlir-headers
-mlir-headers: 
-	cmake -S . -B ${BUILD_DIR}
+mlir-headers: build
 	cmake --build ${BUILD_DIR} --target mlir-headers
 
 .PHONY: mlir-docs
-mlir-docs: 
-	cmake -S . -B ${BUILD_DIR}
+mlir-docs: build
 	cmake --build ${BUILD_DIR} --target mlir-docs
 
 .PHONY: test
-test:
-	cmake -S . -B ${BUILD_DIR}
+test: build
 	cmake --build ${BUILD_DIR} --target check-mlir-tutorial 
 
 .PHONY: clean

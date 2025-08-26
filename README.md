@@ -1,6 +1,23 @@
 # How to Build Sources
 
 ```sh
-cmake -S . -B ./<build-dir-name>
-cmake --build build-dir
+make build
+```
+
+## Generate MLIR Headers
+
+```sh
+make mlir-headers
+```
+
+## Generate MLIR Docs
+
+```sh
+make mlir-docs
+```
+
+## Run Tests
+
+```sh
+make test
 ```
