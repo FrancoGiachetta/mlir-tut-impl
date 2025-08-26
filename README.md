@@ -1,28 +1,32 @@
-# How to Build Sources
+# MLIR Tutorial
+
+An implementation of Jeremy Kun's [mlir-tutorial](https://github.com/j2kun/mlir-tutorial?tab=readme-ov-file)
+
+## How to Build Sources
 
 ```sh
 make build
 ```
 
-## Generate MLIR Headers
+### Generate MLIR Headers
 
 ```sh
 make mlir-headers
 ```
 
-## Generate MLIR Docs
+### Generate MLIR Docs
 
 ```sh
 make mlir-docs
 ```
 
-## Run Tests
+### Run Tests
 
 ```sh
 make test
 ```
 
-# Some useful configuration for VSCode
+## Some useful configuration for VSCode
 
 By default, Vscode won’t recognize the paths from `#include <file-path>.h`. To allow this, we need to create a file `.vscode/c_cpp_properties.json`, at the root of the project, and add the following config:
 
