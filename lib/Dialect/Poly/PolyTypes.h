@@ -8,4 +8,4 @@
 #define GET_TYPEDEF_CLASSES
 #include "lib/Dialect/Poly/PolyOpsTypes.h.inc"
 
-#endif  // LIB_TYPES_POLY_POLYTYPES_H_
+#endif

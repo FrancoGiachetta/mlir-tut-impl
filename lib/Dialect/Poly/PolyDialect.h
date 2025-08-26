@@ -7,4 +7,4 @@
 
 #include "lib/Dialect/Poly/PolyOpsDialect.h.inc"
 
-#endif  // LIB_DIALECT_POLY_POLYDIALECT_H_
+#endif

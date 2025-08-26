@@ -11,6 +11,7 @@ def PolyDialect : Dialect {
         polynomials over integers.
     }];
     let useDefaultTypePrinterParser = 1;
+    let hasConstantMaterializer = 1;
 
   let cppNamespace = "::mlir::tutorial::poly";
 }

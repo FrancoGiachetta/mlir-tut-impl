@@ -10,4 +10,4 @@
 #define GET_OP_CLASSES
 #include "lib/Dialect/Poly/PolyOps.h.inc"
 
-#endif  // LIB_DIALECT_POLY_POLYOPS_H_
+#endif
