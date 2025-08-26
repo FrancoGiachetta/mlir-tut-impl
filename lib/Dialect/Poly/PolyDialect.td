@@ -7,6 +7,7 @@ def PolyDialect : Dialect {
         The poly dialect defines types and operations for single-variable
         polynomials over integers.
     }];
+    let useDefaultTypePrinterParser = 1;
 
   let cppNamespace = "::mlir::tutorial::poly";
 }

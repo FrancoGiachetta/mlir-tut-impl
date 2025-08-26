@@ -2,5 +2,8 @@
     "tablegen-lsp.includePath": [
         "/opt/homebrew/opt/llvm@19/include",
     ],
-    "mlir.server_path": "/opt/homebrew/opt/llvm@19/bin/mlir-lsp-server"
+    "mlir.server_path": "/opt/homebrew/opt/llvm@19/bin/mlir-lsp-server",
+    "files.associations": {
+        "*.inc": "cpp"
+    }
 }
