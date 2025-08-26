@@ -4,6 +4,8 @@
 include "PolyDialect.td"
 include "mlir/IR/AttrTypeBase.td"
 
+// * mnemonic, and so TypeMnemonic, represents the string that will be used for the IR representation of the type.
+// * name is a suffix used in the name of the generated class. In this case, <suffix>Type
 class PolyType<string name, string TypeMnemonic> : TypeDef<PolyDialect, name> {
     let mnemonic = TypeMnemonic;
 }
