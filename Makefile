@@ -11,7 +11,7 @@ mlir-headers: build
 
 .PHONY: mlir-docs
 mlir-docs: build
-	cmake --build ${BUILD_DIR} --target mlir-docs
+	cmake --build ${BUILD_DIR} --target mlir-doc
 
 .PHONY: test
 test: build
@@ -20,3 +20,4 @@ test: build
 .PHONY: clean
 clean:
 	rm -rf ${BUILD_DIR}
+	cd dialect-intregration && cargo clean

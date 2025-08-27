@@ -3,16 +3,17 @@
 
 include "PolyDialect.td"
 include "PolyTypes.td"
+include "mlir/Interfaces/InferTypeOpInterface.td"
 include "mlir/Interfaces/SideEffectInterfaces.td"
 
 // Type constraint for poly binop arguments: polys, vectors of polys, or
 // tensors of polys.
 def PolyOrContainer : TypeOrContainer<Poly, "poly-or-container">;
 
-class Poly_BinOp<string mnemonic> : Op<PolyDialect, mnemonic, [Pure, ElementwiseMappable, SameOperandsAndResultElementType]> {
+class Poly_BinOp<string mnemonic> : Op<PolyDialect, mnemonic, [Pure, ElementwiseMappable, SameOperandsAndResultType]> {
   let arguments = (ins PolyOrContainer:$lhs, PolyOrContainer:$rhs);
   let results = (outs PolyOrContainer:$output);
-  let assemblyFormat = "$lhs `,` $rhs attr-dict `:` `(` type($lhs) `,` type($rhs) `)` `->` type($output)";
+  let assemblyFormat = "$lhs `,` $rhs attr-dict `:` qualified(type($output))";
   let hasFolder = 1;
 }
 
@@ -36,7 +37,7 @@ def Poly_FromTensorOp : Op<PolyDialect, "from_tensor", [Pure]> {
   let hasFolder = 1;
 }
 
-def Poly_EvalOp : Op<PolyDialect, "eval"> {
+def Poly_EvalOp : Op<PolyDialect, "eval", [AllTypesMatch<["point", "output"]>]> {
   let summary = "Evaluates a Polynomial at a given input value.";
   let arguments = (ins Poly:$input, AnyInteger:$point);
   let results = (outs AnyInteger:$output);
