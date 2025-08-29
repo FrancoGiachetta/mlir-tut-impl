@@ -8,8 +8,12 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(BUILD_DEPS ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+set(CMAKE_OSX_DEPLOYMENT_TARGET 15.0)
+
 set(BinDir "${CMAKE_SOURCE_DIR}/bin")
+# This sets where static libraries (.a) should be built
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${BinDir}/static-libs")
+# This sets where shared libraries (macos: .dylib) should be built
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${BinDir}/shared-libs")
 
 # This variable defines where to find MLIRConfig.cmake. It can be modified when building

@@ -1,16 +1,14 @@
-#include <mlir/CAPI/Wrap.h>
+#include <mlir/CAPI/IR.h>
 #include <mlir/InitAllDialects.h>
 #include <mlir/InitAllPasses.h>
 #include <mlir/Tools/mlir-opt/MlirOptMain.h>
 #include <mlir/Transforms/Passes.h>
-#include <mlir/CAPI/IR.h>
 
 #include "Dialect/include/register.h"
 
 int main(int argc, char **argv) {
   mlir::DialectRegistry registry;
 
-  // registry.insert<mlir::tutorial::poly::PolyDialect>();
   CRegisterDialects(wrap(&registry));
 
   mlir::registerAllDialects(registry);

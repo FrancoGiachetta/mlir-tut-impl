@@ -7,5 +7,3 @@ edition = "2024"
 melior = { version = "0.21.0", features = ["ods-dialects", "helpers"] }
 mlir-sys = { version = "0.4.1" }
 
-[build-dependencies]
-cmake = "0.1.54"
