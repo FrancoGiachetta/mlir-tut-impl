@@ -1,9 +1,7 @@
-#include "mlir-c/RegisterEverything.h"
-#include "mlir/CAPI/IR.h" // for unwrap()
-#include "mlir/InitAllDialects.h"
+#include <mlir/CAPI/IR.h>
 
-#include "lib/Dialect/Poly/PolyDialect.h"
-#include "register.h"
+#include "Dialect/include/Poly/PolyDialect.h"
+#include "Dialect/include/register.h"
 
 static void CPPRegisterDialects(mlir::DialectRegistry &registry) {
   registry.insert<mlir::tutorial::poly::PolyDialect>();
