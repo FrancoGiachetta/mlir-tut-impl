@@ -5,6 +5,7 @@ project(mlir-tutorial LANGUAGES CXX C)
 set(CMAKE_CXX_STANDARD 17 CACHE STRING "C++ standard to conform to")
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(BUILD_DEPS ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # This variable defines where to find MLIRConfig.cmake. It can be modified when building
 # LLVM sources. Since I have installed it with brew, I don't have it set.
@@ -31,6 +32,6 @@ include_directories(${PROJECT_SOURCE_DIR})
 include_directories(${PROJECT_BINARY_DIR})
 
 # Include CMakeLists.txt from these subdirectories
-add_subdirectory(lib)
+add_subdirectory(Dialect)
 add_subdirectory(tools)
 add_subdirectory(tests)

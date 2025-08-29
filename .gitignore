@@ -43,6 +43,6 @@
 
 .vscode/
 
-build-dir/
+build/
 
 **/target

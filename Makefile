@@ -1,4 +1,4 @@
-BUILD_DIR=build-dir
+BUILD_DIR=build
 
 .PHONY: build
 build: 
@@ -16,6 +16,10 @@ mlir-docs: build
 .PHONY: test
 test: build
 	cmake --build ${BUILD_DIR} --target check-mlir-tutorial 
+
+.PHONY: fmt
+fmt:
+	find . -iname '*.h' -o -iname '*.cpp' -o -iname '*.hpp' | clang-format --style=file -i --files=/dev/stdin
 
 .PHONY: clean
 clean:

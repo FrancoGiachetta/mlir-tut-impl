@@ -1,3 +1,4 @@
+
 // RUN: tutorial-opt %s --loop-invariant-code-motion > %t
 // RUN: FileCheck %s < %t
 

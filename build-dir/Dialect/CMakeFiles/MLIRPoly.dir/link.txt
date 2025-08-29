@@ -1,0 +1,2 @@
+/usr/bin/ar qc libMLIRPoly.a CMakeFiles/obj.MLIRPoly.dir/lib/Poly/PolyDialect.cpp.o CMakeFiles/obj.MLIRPoly.dir/lib/Poly/PolyOps.cpp.o
+/usr/bin/ranlib libMLIRPoly.a
