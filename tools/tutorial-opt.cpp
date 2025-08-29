@@ -9,7 +9,7 @@
 int main(int argc, char **argv) {
   mlir::DialectRegistry registry;
 
-  CRegisterDialects(wrap(&registry));
+  registerCustomDialects(wrap(&registry));
 
   mlir::registerAllDialects(registry);
   mlir::registerAllPasses();

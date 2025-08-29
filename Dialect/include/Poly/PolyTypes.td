@@ -3,6 +3,7 @@
 
 include "PolyDialect.td"
 include "mlir/IR/AttrTypeBase.td"
+include "mlir/Dialect/LLVMIR/LLVMOpBase.td"
 
 // * mnemonic, and so TypeMnemonic, represents the string that will be used for the IR representation of the type.
 // * name is a suffix used in the name of the generated class. In this case, <suffix>Type
@@ -17,6 +18,11 @@ def Poly : PolyType<"Polynomial", "poly"> {
     }];
     let parameters = (ins "int":$degreeBound);
     let assemblyFormat = "`<`$degreeBound`>`";
+
+    // Generate method declarations
+    let extraClassDeclaration = [{
+        static PolynomialType getPolyType(MLIRContext *context, uint32_t degree);
+    }];
 }
 
 #endif 

@@ -1,64 +1,71 @@
-mod dialect_gen {
-    use mlir_sys::MlirDialectRegistry;
+use melior::{
+    Context,
+    dialect::{DialectRegistry, func},
+    helpers::BuiltinBlockExt,
+    ir::{
+        Attribute, Block, BlockLike, Identifier, Location, Module, Region, Type,
+        attribute::{DenseI32ArrayAttribute, StringAttribute, TypeAttribute},
+        r#type::{FunctionType, IntegerType},
+    },
+    utility::{register_all_dialects, register_all_passes},
+};
 
-    melior::dialect! {
-        name: "poly",
-        files: [
-            "PolyDialect.td",
-            "PolyOps.td",
-            "PolyTypes.td",
-        ],
-        include_directories: ["/Users/franco/Documents/Projects/mlir-tut-impl/Dialect/include/Poly/"]
-    }
+use crate::bindings::dialect_gen;
 
-    #[link(name = "dialect_bindings")]
-    unsafe extern "C" {
-        pub fn CRegisterDialects(registry: MlirDialectRegistry);
-    }
+mod bindings;
+
+pub fn initialize_context() -> Context {
+    let context = Context::new();
+    context.append_dialect_registry(&{
+        let registry = DialectRegistry::new();
+
+        unsafe { bindings::dialect_gen::registerCustomDialects((&registry).to_raw()) };
+
+        register_all_dialects(&registry);
+        registry
+    });
+    context.load_all_available_dialects();
+    register_all_passes();
+    context
 }
 
-#[cfg(test)]
-mod tests {
-    use melior::{
-        Context,
-        dialect::DialectRegistry,
-        utility::{register_all_dialects, register_all_llvm_translations},
-    };
+pub fn build_module(ctx: &'_ Context) -> Module<'_> {
+    let location = Location::unknown(ctx);
+    let module = Module::new(location);
 
-    use crate::dialect_gen;
+    let u32_type: Type<'_> = IntegerType::new(ctx, 32).into();
+    module.body().append_operation(func::func(
+        ctx,
+        StringAttribute::new(ctx, "entrypoint"),
+        TypeAttribute::new(FunctionType::new(ctx, &[u32_type, u32_type], &[u32_type]).into()),
+        {
+            let region = Region::new();
+            let block = region.append_block(Block::new(&[]));
 
-    pub fn load_all_dialects(context: &Context) {
-        let registry = DialectRegistry::new();
-        register_all_dialects(&registry);
+            let coefficients = DenseI32ArrayAttribute::new(&ctx, &[2, 3]).into();
 
-        unsafe {
-            dialect_gen::CRegisterDialects(registry.to_raw());
-        }
+            let result = block
+                .append_op_result(
+                    dialect_gen::poly::constant(
+                        &ctx,
+                        dialect_gen::tensor(&ctx),
+                        coefficients,
+                        location,
+                    )
+                    .into(),
+                )
+                .unwrap();
 
-        context.append_dialect_registry(&registry);
-        context.load_all_available_dialects();
-    }
+            block.append_operation(func::r#return(&[result], location));
 
-    pub fn create_test_context() -> Context {
-        let context = Context::new();
+            region
+        },
+        &[(
+            Identifier::new(ctx, "llvm.emit_c_interface"),
+            Attribute::unit(ctx),
+        )],
+        location,
+    ));
 
-        context.attach_diagnostic_handler(|diagnostic| {
-            eprintln!("{diagnostic}");
-            true
-        });
-
-        load_all_dialects(&context);
-        register_all_llvm_translations(&context);
-
-        context
-    }
-
-    #[test]
-    fn test_poly_is_loaded() {
-        let ctx = create_test_context();
-
-        let count = ctx.registered_dialect_count();
-
-        assert_eq!(count, 48);
-    }
+    module
 }

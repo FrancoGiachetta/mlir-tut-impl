@@ -5,6 +5,7 @@ add_subdirectory(include)
 add_mlir_dialect_library(MLIRPoly
     ${PROJECT_SOURCE_DIR}/Dialect/lib/Poly/PolyDialect.cpp
     ${PROJECT_SOURCE_DIR}/Dialect/lib/Poly/PolyOps.cpp
+    ${PROJECT_SOURCE_DIR}/Dialect/lib/Poly/PolyTypes.cpp
 
     ADDITIONAL_HEADER_DIRS
     ${PROJECT_SOURCE_DIR}/Dialect/include/Poly

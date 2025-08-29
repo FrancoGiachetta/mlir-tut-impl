@@ -43,6 +43,7 @@ def Poly_EvalOp : Op<PolyDialect, "eval"> {
   let assemblyFormat = "$input `,` $point attr-dict `:` `(` type($input) `,` type($point) `)` `->` type($output)";
 }
 
+
 def Poly_ConstantOp : Op<PolyDialect, "constant", [Pure, ConstantLike]> {
   let summary = "Define a constant polynomial via an attribute.";
   let arguments = (ins AnyIntElementsAttr:$coefficients);
