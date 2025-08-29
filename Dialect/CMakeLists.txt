@@ -12,9 +12,7 @@ add_mlir_dialect_library(MLIRPoly
     LINK_LIBS PUBLIC
     )
 
-install(TARGETS MLIRPoly LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
-
-add_library(dialect_bindings SHARED lib/register.cpp)
+add_library(dialect_bindings STATIC lib/register.cpp)
 
 target_include_directories(dialect_bindings
     PUBLIC
@@ -28,5 +26,3 @@ target_link_libraries(dialect_bindings
     PRIVATE
         MLIRSupport
 )
-
-install(TARGETS dialect_bindings LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})

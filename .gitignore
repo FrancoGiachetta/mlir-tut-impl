@@ -44,5 +44,6 @@
 .vscode/
 
 build/
+bin/
 
 **/target

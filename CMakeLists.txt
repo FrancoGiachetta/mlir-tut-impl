@@ -38,5 +38,5 @@ include_directories(${PROJECT_BINARY_DIR})
 
 # Include CMakeLists.txt from these subdirectories
 add_subdirectory(Dialect)
-add_subdirectory(tools)
 add_subdirectory(tests)
+add_subdirectory(tools)

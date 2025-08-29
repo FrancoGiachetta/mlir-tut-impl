@@ -3,7 +3,6 @@
 
 #include "Dialect/include/Poly/PolyDialect.h"
 #include "Dialect/include/Poly/PolyOps.h"
-#include "Dialect/include/Poly/PolyTypes.h"
 
 #include "Dialect/include/Poly/PolyOpsDialect.cpp.inc"
 #define GET_TYPEDEF_CLASSES

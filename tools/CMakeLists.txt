@@ -11,11 +11,11 @@ set(LIBS
 add_llvm_executable(tutorial-opt tutorial-opt.cpp)
 
 
-
 target_link_libraries(tutorial-opt 
+PUBLIC
+dialect_bindings
 PRIVATE 
 ${LIBS}
-# dialect_bindings
 )
 
 llvm_update_compile_flags(tutorial-opt)

@@ -1,4 +1,5 @@
 BUILD_DIR=build
+BIN_DIR=bin
 
 .PHONY: build
 build: 
@@ -24,4 +25,5 @@ fmt:
 .PHONY: clean
 clean:
 	rm -rf ${BUILD_DIR}
+	rm -rf ${BIN_DIR}
 	cd dialect-intregration && cargo clean
