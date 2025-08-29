@@ -1,7 +1,7 @@
 #ifndef DIALECT_REGISTER_H
 #define DIALECT_REGISTER_H
 
-#include "mlir-c/IR.h"
+#include <mlir-c/IR.h>
 
 #ifdef __cplusplus
 extern "C" {

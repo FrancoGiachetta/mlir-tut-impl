@@ -8,7 +8,7 @@ mod dialect_gen {
             "PolyOps.td",
             "PolyTypes.td",
         ],
-        include_directories: ["/Users/franco/Documents/Projects/mlir-tut-impl/lib/Dialect/Poly/"]
+        include_directories: ["/Users/franco/Documents/Projects/mlir-tut-impl/Dialect/include/Poly/"]
     }
 
     #[link(name = "dialect_bindings")]
