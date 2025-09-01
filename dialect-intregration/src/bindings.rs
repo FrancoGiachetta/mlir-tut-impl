@@ -1,7 +1,6 @@
 pub mod dialect_gen {
     use melior::{
-        Context,
-        ir::{Type, TypeLike, r#type::IntegerType},
+        dialect::DialectRegistry, ir::{r#type::IntegerType, Type, TypeLike}, Context
     };
     use mlir_sys::{MlirContext, MlirDialectRegistry, MlirType, mlirUnrankedTensorTypeGet};
 
@@ -21,6 +20,11 @@ pub mod dialect_gen {
         pub fn registerCustomDialects(registry: MlirDialectRegistry);
         /// Create a Polynomial type from cpp.
         pub fn getPolynomialType(context: MlirContext, degree: i32) -> MlirType;
+    }
+
+    // Safe wrapper to register a dialect.
+    pub fn register_custom_dialects(registry: &DialectRegistry) {
+        unsafe {registerCustomDialects(registry.to_raw());}
     }
 
     /// Safe wrapper to create a polynomial type.
@@ -51,10 +55,8 @@ mod tests {
         let registry = DialectRegistry::new();
         register_all_dialects(&registry);
 
-        unsafe {
-            // register poly dialect
-            dialect_gen::registerCustomDialects(registry.to_raw());
-        }
+        // register poly dialect
+        dialect_gen::register_custom_dialects(&registry);
 
         context.append_dialect_registry(&registry);
         context.load_all_available_dialects();
